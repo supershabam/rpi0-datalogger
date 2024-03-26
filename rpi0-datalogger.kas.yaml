@@ -4,9 +4,12 @@ header:
 machine: raspberrypi3
 distro: poky
 target:
-  - core-image-base
+  - dataloger-image
 
 repos:
+  meta-datalogger:
+    path: meta-datalogger
+
   meta-raspberry:
     url: https://git.yoctoproject.org/meta-raspberrypi
     path: layers/meta-raspberry
@@ -42,14 +45,13 @@ bblayers_conf_header:
     BBPATH = "${TOPDIR}"
     BBFILES ?= ""
 local_conf_header:
-  reduce_diskspace: |
-    INHERIT += "rm_work_and_downloads"
   standard: |
     CONF_VERSION = "2"
     PACKAGE_CLASSES = "package_rpm"
     SDKMACHINE = "x86_64"
     USER_CLASSES = "buildstats"
     PATCHRESOLVE = "noop"
+    DISTRO_FEATURES = "systemd"
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks"
   diskmon: |
