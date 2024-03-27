@@ -1,6 +1,7 @@
 SUMMARY = "datalogger image"
 LICENSE = "MIT"
 
-inherit core-image-base
+IMAGE_INSTALL = "wpa-supplicant"
+inherit core-image
 
 IMAGE_FEATURES += "ssh-server-openssh"

@@ -4,7 +4,7 @@ header:
 machine: raspberrypi3
 distro: poky
 target:
-  - dataloger-image
+  - core-image-base
 
 repos:
   meta-datalogger:
@@ -51,9 +51,12 @@ local_conf_header:
     SDKMACHINE = "x86_64"
     USER_CLASSES = "buildstats"
     PATCHRESOLVE = "noop"
-    DISTRO_FEATURES = "systemd"
+    DISTRO_FEATURES = "systemd wifi"
+    CORE_IMAGE_EXTRA_INSTALL += " wpa-supplicant"
+    VIRTUAL-RUNTIME_init_manager = "systemd"
+    VIRTUAL-RUNTIME_initscript = "systemd-compat-units"
   debug-tweaks: |
-    EXTRA_IMAGE_FEATURES = "debug-tweaks"
+    EXTRA_IMAGE_FEATURES = "debug-tweaks ssh-server-openssh"
   diskmon: |
     BB_DISKMON_DIRS = "\
         STOPTASKS,${TMPDIR},1G,100K \
