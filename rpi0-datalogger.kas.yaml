@@ -51,10 +51,11 @@ local_conf_header:
     SDKMACHINE = "x86_64"
     USER_CLASSES = "buildstats"
     PATCHRESOLVE = "noop"
-    DISTRO_FEATURES = "systemd wifi"
-    CORE_IMAGE_EXTRA_INSTALL += " wpa-supplicant"
-    VIRTUAL-RUNTIME_init_manager = "systemd"
-    VIRTUAL-RUNTIME_initscript = "systemd-compat-units"
+    ENABLE_UART = "1"
+    INIT_MANAGER = "systemd"
+    DISTRO_FEATURES:append = " systemd wifi "
+    IMAGE_INSTALL:append = " linux-firmware-rpidistro-bcm43430 "
+    CORE_IMAGE_EXTRA_INSTALL:append = " wpa-supplicant "
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks ssh-server-openssh"
   diskmon: |
