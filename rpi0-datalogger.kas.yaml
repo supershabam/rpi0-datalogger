@@ -39,6 +39,18 @@ repos:
     path: layers/meta-qt5
     branch: kirkstone
 
+  meta-rauc:
+    url: https://github.com/rauc/meta-rauc.git
+    path: layers/meta-rauc
+    branch: kirkstone
+
+  meta-rauc-community:
+    url: https://github.com/leon-anavi/meta-rauc-community.git
+    path: layers/meta-rauc-community
+    branch: kirkstone
+    layers:
+      meta-rauc-raspberrypi:
+
 bblayers_conf_header:
   standard: |
     POKY_BBLAYERS_CONF_VERSION = "2"
@@ -53,9 +65,11 @@ local_conf_header:
     PATCHRESOLVE = "noop"
     ENABLE_UART = "1"
     INIT_MANAGER = "systemd"
-    DISTRO_FEATURES:append = " systemd wifi "
-    IMAGE_INSTALL:append = " linux-firmware-rpidistro-bcm43430 "
+    DISTRO_FEATURES:append = " systemd wifi rauc "
+    IMAGE_INSTALL:append = " linux-firmware-rpidistro-bcm43430 rauc "
     CORE_IMAGE_EXTRA_INSTALL:append = " wpa-supplicant "
+    PREFERRED_PROVIDER_virtual/bootloader = "u-boot"
+    WKS_FILE = "sdimage-dual-raspberrypi.wks.in"
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks ssh-server-openssh"
   diskmon: |
