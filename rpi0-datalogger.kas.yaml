@@ -1,7 +1,7 @@
 header:
   version: 14
 
-machine: raspberrypi3
+machine: raspberrypi0-wifi
 distro: poky
 target:
   - core-image-base
@@ -66,7 +66,10 @@ local_conf_header:
     ENABLE_UART = "1"
     INIT_MANAGER = "systemd"
     DISTRO_FEATURES:append = " systemd wifi rauc "
-    IMAGE_INSTALL:append = " linux-firmware-rpidistro-bcm43430 rauc "
+    RPI_USE_U_BOOT = "1"
+    IMAGE_INSTALL:append = " linux-firmware-rpidistro-bcm43430 rauc i2c-tools "
+    IMAGE_FSTYPES:append = " ext4 "
+    SDIMG_ROOTFS_TYPE="ext4"
     CORE_IMAGE_EXTRA_INSTALL:append = " wpa-supplicant "
     PREFERRED_PROVIDER_virtual/bootloader = "u-boot"
     WKS_FILE = "sdimage-dual-raspberrypi.wks.in"
