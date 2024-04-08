@@ -1,10 +1,11 @@
 header:
   version: 14
 
-machine: raspberrypi0-wifi
+machine: raspberrypi3
 distro: poky
 target:
   - core-image-base
+  - update-bundle
 
 repos:
   meta-datalogger:
@@ -73,6 +74,7 @@ local_conf_header:
     CORE_IMAGE_EXTRA_INSTALL:append = " wpa-supplicant "
     PREFERRED_PROVIDER_virtual/bootloader = "u-boot"
     WKS_FILE = "sdimage-dual-raspberrypi.wks.in"
+    RAUC_SLOT_rootfs = "core-image-base"
   debug-tweaks: |
     EXTRA_IMAGE_FEATURES = "debug-tweaks ssh-server-openssh"
   diskmon: |

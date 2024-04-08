@@ -7,3 +7,9 @@ https://www.konsulko.com/getting-started-with-rauc-on-raspberry-pi-2
 ```
 bitbake update-bundle
 ```
+
+## problems
+
+* trying to make update-bundle happen as part of kas build
+* verifying that update-bundle.bb is overwritten to use rootfs of expected image
+* double-checking that build works with non-dirty dependencies
