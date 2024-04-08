@@ -11,5 +11,5 @@ bitbake update-bundle
 ## problems
 
 * [x] trying to make update-bundle happen as part of kas build
-* [!!!!] verifying that update-bundle.bb is overwritten to use rootfs of expected image
-* double-checking that build works with non-dirty dependencies
+* [x] verifying that update-bundle.bb is overwritten to use rootfs of expected image
+* [x] double-checking that build works with non-dirty dependencies
